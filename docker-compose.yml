@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # 🗄️ Banco de Dados MySQL
+  db:
+    image: mysql:8.0
+    container_name: techforge_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql # Garante a persistência de dados pedida na rubrica
+    networks:
+      - techforge_network # Conectado apenas na rede interna isolada
+
+  # 🟢 API Backend (Node.js + Prisma)
+  backend:
+    build: ./backend
+    container_name: techforge_backend
+    restart: always
+    environment:
+      PORT: ${PORT}
+      DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - db # Só liga depois que o banco estiver pronto
+    networks:
+      - techforge_network # Isolado na rede interna
+
+  # 🔵 Frontend (React + Vite)
+  frontend:
+    build: ./frontend
+    container_name: techforge_frontend
+    restart: always
+    depends_on:
+      - backend # Só liga depois do backend
+    networks:
+      - techforge_network # Isolado na rede interna
+
+  # 🛡️ Nginx (O único exposto para fora do container)
+  nginx:
+    image: nginx:alpine
+    container_name: techforge_nginx
+    restart: always
+    ports:
+      - "80:80"   # Porta HTTP (para fazer o redirecionamento automático)
+      - "443:443" # Porta HTTPS Seguro
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Mapeia nossa configuração
+      - ./certs:/etc/nginx/certs:ro           # Onde vão ficar os certificados do mkcert
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - techforge_network # Faz a ponte da rede interna para as portas externas
+
+# Volume nomeado para o MySQL não perder nada
+volumes:
+  mysql_data:
+
+# Rede isolada para nenhum serviço (além do Nginx) ficar exposto na sua máquina
+networks:
+  techforge_network:
+    driver: bridge

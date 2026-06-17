@@ -1,0 +1,12 @@
+{
+  "name": "techforge-root",
+  "version": "1.0.0",
+  "private": true,
+ "scripts": {
+    "prepare": "husky",
+    "test": "npm run test:e2e --prefix frontend"
+  },
+  "devDependencies": {
+    "husky": "^9.0.11"
+  }
+}
