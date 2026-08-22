@@ -1,5 +1,5 @@
 import { CategoryRepository } from '../repositories/category.repository.js';
-import { AppError } from '../middlewares/error.middleware.js';
+import { AppError } from '../middlewares/error.js';
 import { getPagination } from '../utils/pagination.js';
 
 export class CategoryService {

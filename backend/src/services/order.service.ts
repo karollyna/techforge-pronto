@@ -1,7 +1,7 @@
 import { OrderRepository } from '../repositories/order.repository.js';
 import { ProductRepository } from '../repositories/product.repository.js';
 import { UserRepository } from '../repositories/user.repository.js';
-import { AppError } from '../middlewares/error.middleware.js';
+import { AppError } from '../middlewares/error.js';
 import { getPagination } from '../utils/pagination.js';
 
 export class OrderService {

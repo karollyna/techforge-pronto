@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { env } from '../config/env.js';
 import { UserRepository } from '../repositories/user.repository.js';
-import { AppError } from '../middlewares/error.middleware.js';
+import { AppError } from '../middlewares/error.js';
 
 export class AuthService {
   constructor(private users = new UserRepository()) {}
