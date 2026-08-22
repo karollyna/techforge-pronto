@@ -83,3 +83,16 @@ npm test
 - 3 CRUDs completos: ok
 - Componentização: ok
 - Visual: interface moderna, limpa e responsiva
+## 📐 Documentação de Engenharia de Software
+
+### 1. Diagrama Entidade Relacionamento (DER)
+![DER](./docs/Diagrama%20Entidade%20Relacionamento%20(DER).png)
+
+### 2. Diagrama de Casos de Uso
+![Casos de Uso](./docs/Diagrama%20de%20Casos%20de%20Uso.png)
+
+### 3. Diagrama de Sequência
+![Sequencia](./docs/Diagrama%20de%20Sequência%20(Upload%20com%20Multer).png)
+
+### 4. Diagrama de Atividades
+![Atividades](./docs/Diagrama%20de%20Atividades%20(Regras%20de%20Acesso%20Admin-User).png)
