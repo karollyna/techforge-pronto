@@ -96,3 +96,20 @@ npm test
 
 ### 4. Diagrama de Atividades
 ![Atividades](./docs/Diagrama%20de%20Atividades%20(Regras%20de%20Acesso%20Admin-User).png)
+# Tech Forge - Sistema Integrado
+
+## 📚 Documentação Técnica Completa
+
+Toda a documentação exigida pela nova rubrica está organizada dentro da pasta `/docs`:
+
+- [`docs/ARQUITETURA.md`](./docs/ARQUITETURA.md): Diagramas C4, DDD, Bounded Contexts, ADRs, Swagger, Resiliência e CI/CD.
+- [`docs/GESTAO_PROJETO.md`](./docs/GESTAO_PROJETO.md): Framework Cynefin, Gestão Jira e Ciclo de Vida Scrum.
+- [`docs/UML.md`](./docs/UML.md): Diagramas UML (Casos de Uso, Sequência, Atividades e DER).
+
+---
+
+## 🚀 Como Executar o Projeto
+
+```bash
+# Subir toda a infraestrutura (Nginx + Frontend + Backend + MySQL + Redis)
+docker-compose up --build
